@@ -8,7 +8,7 @@ class WCO_FloatingIconWhatsAppSettings extends WC_Settings_Page {
     
     public function __construct() {
         $this->id    = 'floating_icon_whatsapp';
-        $this->label = __('Floating Icon WhatsApp', 'woocommerce');
+        $this->label = __('Floating Icon WhatsApp', 'wco_whatsappchatorder');
         
         add_filter('woocommerce_settings_tabs_array', array($this, 'add_settings_page'), 50);
         add_action('woocommerce_settings_' . $this->id, array($this, 'output')); 
@@ -37,31 +37,31 @@ class WCO_FloatingIconWhatsAppSettings extends WC_Settings_Page {
     public function get_settings() {
         return array(
             array(
-                'title' => __('Floating Icon WhatsApp Settings', 'woocommerce'),
+                'title' => __('Floating Icon WhatsApp Settings', 'wco_whatsappchatorder'),
                 'type'  => 'title',
-                'desc'  => __('Customize the floating WhatsApp icon.', 'woocommerce'),
+                'desc'  => __('Customize the floating WhatsApp icon.', 'wco_whatsappchatorder'),
                 'id'    => 'floating_icon_whatsapp_settings'
             ),
             array(
-                'title'   => __('Font Awesome Icon', 'woocommerce'),
+                'title'   => __('Font Awesome Icon', 'wco_whatsappchatorder'),
                 'id'      => 'floating_icon_whatsapp_icon',
                 'type'    => 'text',
                 'default' => 'fa-whatsapp',
             ),
             array(
-                'title'   => __('Icon Color', 'woocommerce'),
+                'title'   => __('Icon Color', 'wco_whatsappchatorder'),
                 'id'      => 'floating_icon_whatsapp_color',
                 'type'    => 'color',
                 'default' => '#ffffff',
             ),
             array(
-                'title'   => __('Background Color', 'woocommerce'),
+                'title'   => __('Background Color', 'wco_whatsappchatorder'),
                 'id'      => 'floating_icon_whatsapp_bg_color',
                 'type'    => 'color',
                 'default' => '#25D366',
             ),
             array(
-                'title'   => __('WhatsApp Number', 'woocommerce'),
+                'title'   => __('WhatsApp Number', 'wco_whatsappchatorder'),
                 'id'      => 'floating_icon_whatsapp_number',
                 'type'    => 'text',
                 'default' => '',
