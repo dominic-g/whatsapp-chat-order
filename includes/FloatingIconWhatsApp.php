@@ -6,19 +6,21 @@ if (!defined('ABSPATH')) {
 
 class WCO_FloatingIconWhatsApp {
     public function __construct() {
-        add_action('admin_init', [$this, 'register_settings']);
-        add_filter('woocommerce_get_settings_pages', [$this, 'add_settings_page']);
+        // add_action('admin_init', [$this, 'register_settings']);
+        // add_filter('woocommerce_get_settings_pages', [$this, 'add_settings_page']);
         add_action('wp_footer', [$this, 'display_floating_icon']);
         register_activation_hook(__FILE__, [$this, 'set_default_settings']);
+        add_filter('plugin_action_links_' . plugin_basename(__FILE__), [$this, 'add_settings_link']);
     }
 
-    public function register_settings() {
-        register_setting('woocommerce_floating_icon_settings_group', 'floating_icon_settings');
-    }
 
-    public function add_settings_page($settings) {
-        $settings[] = include 'FloatingIconWhatsAppSettings.php';
-        return $settings;
+    /**
+     * Add settings link under the plugin description in the Plugins page
+     */
+    public function add_settings_link($links) {
+        $settings_link = '<a href="options-general.php?page=floating-whatsapp-settings">' . __('Settings', 'wco_whatsappchatorder') . '</a>';
+        array_push($links, $settings_link);
+        return $links;
     }
 
     public function set_default_settings() {
