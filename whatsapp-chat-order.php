@@ -38,16 +38,16 @@ function floating_icon_whatsapp_deactivate() {
 }
 register_deactivation_hook(__FILE__, 'floating_icon_whatsapp_deactivate');
 
-register_deactivation_hook(__FILE__, 'floating_icon_whatsapp_deactivate');
+// register_deactivation_hook(__FILE__, 'floating_icon_whatsapp_deactivate');
 
 // Require necessary files
 require_once plugin_dir_path(__FILE__) . 'includes/FloatingIconWhatsApp.php';
 require_once plugin_dir_path(__FILE__) . 'includes/OrderOnWhatsApp.php';
 
-new FloatingIconWhatsApp();
-new OrderOnWhatsApp();
+// new WCO_FloatingIconWhatsApp();
+// new OrderOnWhatsApp();
 
-class FloatingIconWhatsApp {
+/*class FloatingIconWhatsApp {
     public function __construct() {
         add_action('admin_menu', [$this, 'create_settings_page']);
         add_action('wp_footer', [$this, 'display_floating_icon']);
@@ -103,4 +103,4 @@ class FloatingIconWhatsApp {
     }
 }
 
-new FloatingIconWhatsApp();
+new FloatingIconWhatsApp();*/

@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-class FloatingIconWhatsApp {
+class WCO_FloatingIconWhatsApp {
     public function __construct() {
         add_action('admin_init', [$this, 'register_settings']);
         add_filter('woocommerce_get_settings_pages', [$this, 'add_settings_page']);
@@ -50,4 +50,4 @@ class FloatingIconWhatsApp {
     }
 }
 
-new FloatingIconWhatsApp();
+new WCO_FloatingIconWhatsApp();

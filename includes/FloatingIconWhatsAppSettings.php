@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-class FloatingIconWhatsAppSettings extends WC_Settings_Page {
+class WCO_FloatingIconWhatsAppSettings extends WC_Settings_Page {
     
     public function __construct() {
         $this->id    = 'floating_icon_whatsapp';
@@ -74,4 +74,4 @@ class FloatingIconWhatsAppSettings extends WC_Settings_Page {
     }
 }
 
-return new FloatingIconWhatsAppSettings();
+return new WCO_FloatingIconWhatsAppSettings();
