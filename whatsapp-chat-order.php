@@ -48,3 +48,12 @@ require_once plugin_dir_path(__FILE__) . 'includes/FloatingIconWhatsApp.php';
 // Include the settings file
 require_once plugin_dir_path(__FILE__) . 'includes/FloatingIconWhatsAppSettings.php';
 
+
+
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'apd_settings_link' );
+function apd_settings_link( array $links ) {
+    // $url = get_admin_url() . "options-general.php?page=my-plugin";
+    $settings_link = '<a href="'.get_admin_url ().'options-general.php?page=floating-whatsapp-settings">' . __('Settings', 'wco_whatsappchatorder') . '</a>';;
+      $links[] = $settings_link;
+    return $links;
+}
