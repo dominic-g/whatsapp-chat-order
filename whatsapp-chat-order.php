@@ -4,6 +4,8 @@
  * Description: Adds a customizable floating icon and an "Order on WhatsApp" button for WooCommerce products.
  * Version: 1.0.0
  * Author: Dominic_N
+ * Author URI: https://dominicn.dev
+ * License: GPL-2.0+
  */
 
 if (!defined('ABSPATH')) {

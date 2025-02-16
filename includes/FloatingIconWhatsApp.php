@@ -9,6 +9,7 @@ class WCO_FloatingIconWhatsApp {
         // add_action('admin_init', [$this, 'register_settings']);
         // add_filter('woocommerce_get_settings_pages', [$this, 'add_settings_page']);
         add_action('wp_footer', [$this, 'display_floating_icon']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
         register_activation_hook(__FILE__, [$this, 'set_default_settings']);
     }
 
@@ -24,7 +25,7 @@ class WCO_FloatingIconWhatsApp {
             'position' => 'bottom-right',
             'bottom' => '20px',
             'right' => '20px',
-            'message' => 'Hello! I am interested in {page_title}',
+            'message' => 'Hello! I need help in {page_title}',
             'whatsapp_number' => '',
             'excluded_pages' => array()
         );
@@ -34,6 +35,19 @@ class WCO_FloatingIconWhatsApp {
         }
     }
    
+
+    /**
+     * Enqueue styles and scripts
+     */
+    public function enqueue_assets() {
+        wp_enqueue_style(
+            'floating-whatsapp-font-awesome',
+            plugin_dir_url(dirname(__FILE__)) . 'assets/font-awesome/css/font-awesome.css',
+            [],
+            '4.7.0'
+        );
+    }
+
     public function display_floating_icon() {
         $settings = get_option('floating_icon_settings', array());
         
@@ -45,16 +59,27 @@ class WCO_FloatingIconWhatsApp {
         $position = esc_attr($settings['position'] ?? 'bottom-right');
         $bottom = esc_attr($settings['bottom'] ?? '20px');
         $right = esc_attr($settings['right'] ?? '20px');
-        $message = isset($settings['message']) ? urlencode(str_replace('{page_title}', get_the_title(), $settings['message'])) : '';
+        $msg = isset($settings['message']) ? $settings['message'] : 'Hello! I need help in {page_title}';
+        $message = urlencode(str_replace('{page_title}', get_the_title(), $msg));
         $whatsapp_number = esc_attr($settings['whatsapp_number'] ?? '');
+
+        $horizontal = null;
+        if($position == 'bottom-right' && !empty($right)){
+            $horizontal = "right: {$right};";
+        }
+        if($position == 'bottom-left' && !empty($right)){
+            $horizontal = "left: {$right};";
+        }
 
         echo "<style>
             .wco_floating-icon {
                 position: fixed;
-                $position: $bottom $right;
+                bottom: $bottom;
+                $horizontal
                 background: $bg_color;
                 color: $color;
-                padding: 10px;
+                padding: 10px 17px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                 border-radius: 50%;
                 font-size: 24px;
                 cursor: pointer;
