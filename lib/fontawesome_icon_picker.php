@@ -1,11 +1,25 @@
 <?php
+
+$plugin_root = plugin_dir_path(__DIR__);
+    $css_file = $plugin_root . 'assets/font-awesome/css/font-awesome.css';
+    $output_file = $plugin_root . 'assets/icons.json';
+
+    die("File: {$css_file} Exists: ".file_exists($css_file).".");
+    
+    
+    $css_content = file_get_contents($css_file);
+    // preg_match_all('/\.fa-([a-z0-9-]+):before\s*{\s*content:\s*"\\[^"\']+";\s*}/', $css_content, $matches);
+    preg_match_all('/\.fa-([a-z0-9-]+):before\s*{\s*content:\s*"\\([a-f0-9]+)";\s*}/i', $css_content, $matches);
+
+    // print_r($matches[1]); die();
+
 // print_r(plugin_dir_path(__DIR__).'whatsapp-chat-order.php');
 register_activation_hook(plugin_dir_path(__DIR__).'whatsapp-chat-order.php', function() {
     $plugin_root = plugin_dir_path(__DIR__);
     $css_file = $plugin_root . 'assets/font-awesome/css/font-awesome.css';
     $output_file = $plugin_root . 'assets/icons.json';
 
-    // die("File: {$css_file} Exists: ".file_exists($css_file).".");
+    die("File: {$css_file} Exists: ".file_exists($css_file).".");
     
     if (!file_exists($css_file)) return;
     
