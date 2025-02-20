@@ -41,6 +41,7 @@ function floating_icon_whatsapp_deactivate() {
 register_deactivation_hook(__FILE__, 'floating_icon_whatsapp_deactivate');
 
 // Require necessary files
+require_once plugin_dir_path(__FILE__) . 'lib/fontawesome_icon_picker.php';
 require_once plugin_dir_path(__FILE__) . 'includes/FloatingIconWhatsApp.php';
 // require_once plugin_dir_path(__FILE__) . 'includes/OrderOnWhatsApp.php';
 
